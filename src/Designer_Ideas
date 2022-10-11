@@ -5,11 +5,13 @@ We need a private variable for the first x and y values, along with the second x
     have the value of the slope stored in another value, or have it returned in a method
 
 Methods
-make a method that can return the y intercept (maybe use one of our equations and work it out to find out the "b" value
+CONSTRUCTOR: LinearEquation(int initialX, int initialY, int finalX, int finalY)
+make a method that can return the y intercept (maybe use one of our equations and work it out to find out the "b" value)
+   double b = y - m*x; // just use the x1 and y1 values to figure this out, after finding the value of the slope
 make a method that can create the formula of the slope in slope-intercept form
     this will probably be a string, concatenated with the value of the slope and the y intercept
 have a method that can take a double integer, use other methods stated beforehand to return a value using that specific slope-intercept formula
-
+    calcValue(
 toString method
 import scanner class
 (should be in main method?) ask for the first x and y coordinates, then ask for second x and y coordinates
