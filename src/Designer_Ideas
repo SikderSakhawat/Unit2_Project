@@ -1,18 +1,25 @@
 Variables:
 We need a private variable for the first x and y values, along with the second x and y values
-    make a "delta x/y" method to return the values of deltaX and deltaY
-    store these delta values as doubles, then create a slope method to find the value of the slope
     have the value of the slope stored in another value, or have it returned in a method
 
 Methods
-CONSTRUCTOR: LinearEquation(int initialX, int initialY, int finalX, int finalY)
-make a method that can return the y intercept (maybe use one of our equations and work it out to find out the "b" value)
-   double b = y - m*x; // just use the x1 and y1 values to figure this out, after finding the value of the slope
+CONSTRUCTOR: LinearEquation(int initialX, int initialY, int finalX, int finalY) [DONE]
+findSlope(int initialX, int initialY, int finalX, int finalY) // should work with how our object takes in values for our constructor
+    method to find your slope
+
+yIntercept(double yValue, double xValue, double slope); [DONE]
+    double b = y - m*x; // just use the x1 and y1 values to figure this out, after finding the value of the slope
+    make a method that can return the y intercept (maybe use one of our equations and work it out to find out the "b" value)
+
+public void printSlopeFormula(double slope, double yIntercept) [DONE]
 make a method that can create the formula of the slope in slope-intercept form
-    this will probably be a string, concatenated with the value of the slope and the y intercept
-have a method that can take a double integer, use other methods stated beforehand to return a value using that specific slope-intercept formula
-    calcValue(
-toString method
+    this will probably be a string, concatenated with the value of the slope and the y intercept (void?)
+
+calcValue(double value) [DONE]
+    have a method that can take a double integer, use other methods stated beforehand to return a value using that specific slope-intercept formula
+    this will probably use yIntercept() and findSlope() to calculate the value based on the slope intercept formula
+
+toString() method
 import scanner class
 (should be in main method?) ask for the first x and y coordinates, then ask for second x and y coordinates
     have the strings asked set to a variable (that will be used with our methods given)
@@ -26,5 +33,6 @@ use a method to return the ordered pair after you ask for a number to plug into 
 
 Implementation/nitty gritty things
 We need to figure out how to parse the string to only get the integer from it
-    Probably use a substring method, then use a math static method to figure out how to change the string into an int
+    Probably use a substring method, then use a math static method to figure out how to change the string into an int (parseint)
 Using a method as a "distance formula" calculator, will return a double
+Probably put some awesome border designs so the design of my output looks awesome
