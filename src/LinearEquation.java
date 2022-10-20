@@ -1,5 +1,7 @@
+import javax.swing.plaf.synth.SynthDesktopIconUI;
 import java.util.Scanner;
 public class LinearEquation {
+    Scanner s = new Scanner(System.in);
     private double intX;
     private double intY;
     private double finX;
@@ -8,13 +10,13 @@ public class LinearEquation {
     private double deltaY;
     // basically the initial ordered pair taken, then the final ordered pair taken
 
-    public LinearEquation(double initialX, double initialY, double finalX, double finalY){
-        intX = initialX;
-        intY = initialY;
-        finX = finalX;
-        finY = finalY;
+    public LinearEquation(String firstPair, String secondPair){
+        intX = intXFromOrderedPair(firstPair);
+        intY = intYFromOrderedPair(firstPair);
+        finX = intXFromOrderedPair(secondPair);
+        finY = intYFromOrderedPair(secondPair);
         deltaX = finX - intX;
-        deltaY = finY - finX;
+        deltaY = finY - intY;
     }
     // gives us the two ordered pairs as formal parameters which can then be used to figure out the slope and such
 
@@ -29,15 +31,15 @@ public class LinearEquation {
     }
 
     public void slopeInterceptFormula(){ // writes out my slope intercept formula
-        System.out.println("y = " + deltaY + "/" + deltaX + "x + (" + findYIntercept() + ")");
+        System.out.println("y = " + deltaY + "/" + deltaX + " * x + (" + findYIntercept() + ")");
     }
 
-    public double calcValue(double input){
+    public double calcValue(double input){ // calculates the value based on the given input and the slope formula for it
         double result = findSlope() * input + findYIntercept();
         return result;
     }
 
-    public int intXFromOrderedPair(String orderedPair){
+    public int intXFromOrderedPair(String orderedPair){ // returns the x value from the given ordered pair as an int
        String noParentheses = orderedPair.substring(1, orderedPair.length() - 1);
        int whereComma = orderedPair.indexOf(",");
        String firstNum = orderedPair.substring(1, whereComma);
@@ -46,7 +48,7 @@ public class LinearEquation {
        int yNum = Integer.parseInt(secondNum);
        return xNum;
     }
-    public int intYFromOrderedPair(String orderedPair){
+    public int intYFromOrderedPair(String orderedPair){ // returns the y value from the given ordered pair as an int
         String noParentheses = orderedPair.substring(1, orderedPair.length() - 1);
         int whereComma = orderedPair.indexOf(",");
         String firstNum = orderedPair.substring(1, whereComma);
@@ -55,23 +57,30 @@ public class LinearEquation {
         int yNum = Integer.parseInt(secondNum);
         return yNum;
     }
-    public void toString(){
-        Scanner s = new Scanner(System.in);
-        System.out.println("Enter an ordered pair: ");
-        String firstPair = s.nextLine();
-        System.out.println("Enter another ordered pair: ");
-        String secondPair = s.nextLine();
+    public void toString(String firstPair, String secondPair){ // where the entire program basically is output
+        // (cont. from line 59) based on the inputs the user gives
+        int initialX = intYFromOrderedPair(firstPair);
+        int initialY = intYFromOrderedPair(firstPair);
+        int finalX = intXFromOrderedPair(secondPair);
+        int finalY = intYFromOrderedPair(secondPair);
+        System.out.println("-------------------------------------------");
         System.out.println("First pair: " + firstPair);
         System.out.println("Second pair: " + secondPair);
-        intX = intXFromOrderedPair(firstPair);
-        intY = intYFromOrderedPair(firstPair);
-        finX = intXFromOrderedPair(secondPair);
-        finY = intYFromOrderedPair(secondPair);
         System.out.print("Slope of line: ");
         slopeInterceptFormula();
         System.out.println("Slope of line: " + findSlope());
         System.out.println("Y-intercept: " + findYIntercept());
-        System.out.print("Distance between points:" );
-        System.out.println(Math.sqrt(Math.pow()));
+        System.out.println();
+        System.out.println("-------------------------------------------");
+        System.out.print("Distance between points: " );
+        System.out.printf("%.2f" + "\n", Math.sqrt(Math.pow(finalX - initialX, 2) + Math.pow(finalY - finalX, 2)));
+        System.out.println();
+        System.out.println("-------------------------------------------");
+        System.out.println("Enter a new value: ");
+        double newXVal = s.nextDouble();
+        double newYVal = findYIntercept() + findSlope() * newXVal;
+        System.out.println("The coordinate for this is: (" + newXVal + "," + newYVal + ")");
+        System.out.println();
+        System.out.println("-------------------------------------------");
     }
 }
